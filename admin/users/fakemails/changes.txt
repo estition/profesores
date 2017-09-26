@@ -1,0 +1,9 @@
+*****************************************
+PHP FAKE MAIL SCRIPT - Changes
+Developed by Abhishek Deshpande
+http://www.whoisabhi.com/fake-mail/
+*****************************************
+
+- Mail send issue - Fixed.
+- Sender name fixed.
+

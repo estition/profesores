@@ -1,0 +1,6 @@
+dark base: 172244
+base: 0033CC
+mid base: 738FE6
+light base: B6C5F2
+contrast: ff9900
+offwhite FFE6BF

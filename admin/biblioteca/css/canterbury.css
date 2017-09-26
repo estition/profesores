@@ -1,0 +1,117 @@
+/* general */
+
+body {
+	background-color: #fff;
+	margin: 0;
+	padding: 0;
+}
+body, td, p, th {
+	font-family: tahoma, verdana, arial, helvetica, sans-serif;
+	font-size: 8pt; 
+	color: #333;
+}
+img {
+	border-color: #fff;
+}
+li {
+	font-family: tahoma, verdana, arial, helvetica, sans-serif;
+	list-style-type: disc;
+	font-size: 8pt;
+	border: none;
+	margin-left: 9px;
+	color: #333;
+}
+ul {
+    margin-left: 0;
+    padding-left: 10px;
+}
+
+input {
+  font-size: 9pt;
+	color: #333;
+	line-height: 14px;
+}
+
+select {
+  font-size: 9pt;
+	color: #333;
+	line-height: 14px;
+}
+
+textarea {
+  font-size: 9pt;
+	color: #333;
+	line-height: 14px;
+}
+
+.menuText {
+	font-size: 10pt;
+	color: #172244;
+	line-height: 14px;
+}
+
+.textB {
+	font-size: 10pt;
+	color: #333;
+	line-height: 14px;
+}
+
+.heading {
+	font-size: 8pt;
+	color: #172244;
+	line-height: 14px;
+
+}
+
+.submit-button {
+  font-size: 10pt;
+	color: #FFFFFF;
+	background: #0033CC;
+	border: 0px;
+	border-color: #0033CC;
+	padding: 3px 10px;
+	/*align: left;*/
+	cursor: pointer;
+}
+
+.textW {
+	font-size: 8pt;
+	color: #ffffff;
+	line-height: 14px;
+}
+
+.textWBig {
+	font-size: 16pt;
+	color: #ffffff;
+	line-height: 16px;
+}
+
+.boldText {
+	font-size: 9pt;
+	color: #ff9900;
+	line-height: 14px;
+	text-decoration: none;
+}
+
+
+a:link, a.normal:link {
+	color: #172244;
+	font-size: 9pt;
+	text-decoration: none;
+}
+
+a:visited, a.normal:visited {
+	color: #172244;
+	font-size: 9pt;
+	text-decoration: none;
+}
+a:hover, a.normal:hover {
+	color: #0033CC;
+	font-size: 9pt;
+	text-decoration: none;
+}
+a:active, a.normal:active {
+	color: #0033CC;
+	font-size: 9pt;
+	text-decoration: none;
+}

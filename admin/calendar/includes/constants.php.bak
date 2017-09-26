@@ -1,0 +1,18 @@
+<?php
+$HOME = 1;
+$PRODUCTION = 2;
+
+$site = $HOME;
+if ($site == $HOME) {
+	$site = "127.0.0.1";
+	$protocall = "http";
+	
+	$mysql_host = "localhost";
+	$mysql_user = "";
+	$mysql_password = "";
+	$database = "canterbury";
+	
+} elseif ($site == $PRODUCTION) {
+}
+
+?>

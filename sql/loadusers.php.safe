@@ -1,0 +1,122 @@
+<?php include 'constants.php'?>
+<?php include 'functions.php'?>
+<?php include 'database.php'?>
+<?php
+
+function users() {
+
+	$sql = "select * from idiomas.profesor";
+	$result = mysqli_query($link, $sql) or die("Invalid query: " . mysqli_error($link));
+	while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+		$user = explode(" ", $row['nombre']);
+		$inital =  substr($user[0], 0, 1);
+		$first = $user[0];
+		$last = $user[1];
+		$last2 = $user[2];
+		$active = 0;
+		if ($row['contratado'] == 1) {
+			$active = 1;
+		}
+
+		for ($i = 3; $i < (count($user) + 1); $i++) {
+			$last2 .= " " . $user[$i];
+		}
+		$last2 = trim($last2);
+		
+		//print ": " . $first . " " . $last . " " . $last2 . " " . count($user) . "<br>";
+
+		$last = str_replace("''", "", $last);
+		$sql = "select * from users where user_id = '" . $initial . $last . "'";
+		$result2 = mysqli_query($link, $sql) or die("Invalid query: " . mysqli_error($link));
+		if (mysql_num_rows($result2) > 0) {
+			$initial = substr($user[1], 0, 1);
+			//print substr($user[1], 0, 2) . $user[0];
+		}
+		
+		
+		$sql = "select * from users where user_id = '" . $initial . $last . "'";
+		$result3 = mysqli_query($link, $sql) or die("Invalid query: " . mysqli_error($link));
+		if (mysql_num_rows($result3) > 0) {
+			print "ERROR";
+		}
+		
+		$sql = "insert into users (old_id, user_id, is_admin, is_active, changePassword, password, first, last1, last2, country, telephone1, mobile, email, address1, city, state, zip) values ";
+		$sql = $sql . "(" . $row['codigo'] . ", '" . strtolower($inital . $last) . "', 0, " . $active . ", 1, '" . "canterbury1" . "', '" . $first . "', '" . $last . "', '" . $last2 . "', ";
+		$sql .= "'" . $row['pais'] . "', '" . $row['telefono1'] . "', '" . $row['tefmovil'] . "', '" . $row['email'] . "', '" . $row['direccion1'] . "', '" . $row['localidad'] . "', '" . $row['provincia'] . "', '" . $row['cp'] . "')";
+		//print $sql;
+		mysqli_query($link, $sql) or die("Invalid query: " . mysqli_error($link));
+		
+	}
+}
+
+function groups() {
+
+	$sql = "select * from idiomas.grupos";
+	$result = mysqli_query($link, $sql) or die("Invalid query: " . mysqli_error($link));
+	while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+
+	$sql = "insert into groups (old_id, cif, name, telephone1, mobile, email, address1, city, state, zip, start, end) values ";
+	$sql = $sql . "(" . $row['codigo'] . ", '" . $row['cif'] . "', '" . $row['empresa'] . "', ";
+	$sql .= "'" . $row['telefono1'] . "', '" . $row['tefmovil'] . "', '" . $row['email'] . "', '" . $row['direccion1'] . "', '" . $row['localidad'] . "', '" . $row['provincia'] . "', '" . $row['cp'] . "', '" . $row['fechainicio'] . "', '" . $row['fechafinal'] . "')";
+	//print $sql;
+	mysqli_query($link, $sql) or die("Invalid query: " . mysqli_error($link));
+		
+	}
+}
+
+function clients() {
+
+	$sql = "select * from idiomas.alumnos";
+	$result = mysqli_query($link, $sql) or die("Invalid query: " . mysqli_error($link));
+	while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+		$group_id = "null";
+		$sql = "select id from groups where name = '" . $row['grupo'] . "'";
+		//print $sql;
+		$result2 = mysqli_query($link, $sql) or die("Invalid query: " . mysqli_error($link));
+		while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
+			$group_id = $row2['id'];
+		}
+	
+		$sql = "insert into clients (old_id, name, telephone1, mobile, email, address1, city, state, zip, group_id) values ";
+		$sql = $sql . "(" . $row['codigo'] . ", '" . $row['nombre'] . "', ";
+		$sql .= "'" . $row['tel1'] . "', '" . $row['tefmovil'] . "', '" . $row['email'] . "', '" . $row['direccion1'] . "', '" . $row['localidad'] . "', '" . $row['provincia'] . "', '" . $row['cp'] . "', " . $group_id . ")";
+		//print $sql . "<br>";
+		mysqli_query($link, $sql) or die("Invalid query: " . mysqli_error($link));		
+	}
+}
+
+function userGroups() {
+
+	$sql = "select c.id, b.id as user_id from idiomas.grupos a, users b, groups c ";
+	$sql .= " where a.codprofesor = b.old_id and c.old_id = a.codigo";
+	//print $sql;
+	$result = mysqli_query($link, $sql) or die("Invalid query: " . mysqli_error($link));
+	while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+		$group_id = "null";
+		$user_id = "null";
+		$group_id = $row['id'];
+		$user_id = $row['user_id'];
+		//print $group_id . " " . $user_id . "<br>";
+	
+		$sql = "insert into userGroup (user_id, group_id, start, end) values";
+		$sql .=	"(" . $user_id . ", " . $group_id . ", '2004-09-01' , null)";
+
+		mysqli_query($link, $sql) or die("Invalid query: " . mysqli_error($link));		
+	}
+}
+
+
+users();
+groups();
+clients();
+userGroups();
+
+$sql = "update groups set end = null where end = '0000-00-00'";
+mysqli_query($link, $sql) or die("Invalid query: " . mysqli_error($link));
+
+$sql = "update groups set start = sysdate() where start = '0000-00-00'";
+mysqli_query($link, $sql) or die("Invalid query: " . mysqli_error($link));
+
+print "Done...";
+
+?>

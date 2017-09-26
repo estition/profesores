@@ -1,0 +1,558 @@
+<?php
+	/*  Student Reports, version 1.0
+		Author: ISC. Gerardo Cataño
+		Date: July 2009  */
+?>
+<?php
+  include('includes/config.php');
+  include('includes/constants.php');
+  include('includes/database.php');
+  
+  global $Conexion;
+  $Conexion = $link;
+  
+ /* $user = DameUsuario();
+  $pass = DameContrasenia();
+  $host = DameHost();
+  $db_name = DameBaseDeDatos(); //panel_de_control
+ 	*/
+  //$Conexion = mysql_connect($host,$user,$pass);
+  // $Conexion = mysql_connect($mysql_host,$mysql_user,$mysql_pass);
+  
+  //$int = mysql_select_db($db_name);
+  //$int = mysql_select_db($database);
+  
+  /*
+    $Cliente=DameCliente($id);
+	$Profesor=DameProfesor($id);
+	$Alumno=DameAlumno($id);
+	$Curso=DameCurso($id);
+	$Nivel=DameNivel($id);
+	$MaterialUsado=DameMaterial($id);
+	$Comentario=DameComentario($id);
+	$NecesitaMejorar=DameNecesitaMejorar($id);
+  */
+  
+  /////////////////////////////////////////////
+  function ObtenerCalificaciones(&$calificaciones,$id_informe)
+     {
+     global $Conexion;
+	 /*
+	 PRONUNCIACION int(11)   No                 
+  GRAMATICA int(11)   No                 
+  COMPRENSION_ORAL int(11)   No                 
+  COMPRENSION_ESCRITA int(11)   No                 
+  EXPRESION_ORAL int(11)   No                 
+  EXPRESION_ESCRITA int(11)   No                 
+  PARTICIPACION int(11)   No                 
+  COMPORTAMIENTO 
+
+	 */
+     
+	 $sql='SELECT PRONUNCIACION,GRAMATICA,COMPRENSION_ORAL,COMPRENSION_ESCRITA,EXPRESION_ORAL,EXPRESION_ESCRITA,PARTICIPACION,COMPORTAMIENTO FROM informes_alumnos2 where ID='.$id_informe;
+
+	 $rs = mysql_query($sql,$Conexion);
+	  
+	 //print $sql;
+	 
+	 //exit;
+	  				
+  	 $fila = mysql_fetch_row($rs);
+				
+	 
+	 $NumeroRegistros = mysql_num_rows($rs);
+	 
+	 if($NumeroRegistros>0) {
+	    
+		   $calificaciones[0]=$fila[0]+1;
+		   $calificaciones[1]=$fila[1]+1;
+		   $calificaciones[2]=$fila[2]+1;
+		   $calificaciones[3]=$fila[3]+1;
+		   $calificaciones[4]=$fila[4]+1;
+		   $calificaciones[5]=$fila[5]+1;
+		   $calificaciones[6]=$fila[6]+1;
+		   $calificaciones[7]=$fila[7]+1; 
+		}
+	 else {	
+	   
+	   }
+	    
+	 mysql_free_result($rs);
+	   
+	}
+	
+	///////////////////////////////
+	
+	 /////////////////////////////////////////////
+  function ObtenerComentarios(&$comentarios,$id_informe)
+     {
+     global $Conexion;
+	 /*
+	 PRONUNCIACION int(11)   No                 
+  GRAMATICA int(11)   No                 
+  COMPRENSION_ORAL int(11)   No                 
+  COMPRENSION_ESCRITA int(11)   No                 
+  EXPRESION_ORAL int(11)   No                 
+  EXPRESION_ESCRITA int(11)   No                 
+  PARTICIPACION int(11)   No                 
+  COMPORTAMIENTO 
+
+	 */
+     
+	 $sql='SELECT COMENTARIO1,COMENTARIO2,COMENTARIO3,COMENTARIO4,COMENTARIO5,COMENTARIO6,COMENTARIO7,COMENTARIO8 FROM informes_alumnos2 where ID='.$id_informe;
+
+	 $rs = mysql_query($sql,$Conexion);
+	  
+	 //print $sql;
+	 
+	 //exit;
+	  				
+  	 $fila = mysql_fetch_row($rs);
+				
+	 
+	 $NumeroRegistros = mysql_num_rows($rs);
+	 
+	 if($NumeroRegistros>0) {
+	    
+		   $comentarios[0]=$fila[0];
+		   $comentarios[1]=$fila[1];
+		   $comentarios[2]=$fila[2];
+		   $comentarios[3]=$fila[3];
+		   $comentarios[4]=$fila[4];
+		   $comentarios[5]=$fila[5];
+		   $comentarios[6]=$fila[6];
+		   $comentarios[7]=$fila[7]; 
+		}
+	 else {	
+	   
+	   }
+	    
+	 mysql_free_result($rs);
+	   
+	}
+	
+	///////////////////////////////
+	
+  
+  /////////////////////////////////////////////
+  function DameClienteI($id)
+     {
+     global $Conexion;
+     
+	 //$sql='SELECT NOMBRE,APELLIDO1 FROM clientes2 WHERE ID=(SELECT IDCLIENTE FROM informes_alumnos2 WHERE ID='.$id.')';
+     
+	 $sql='SELECT name FROM groups WHERE ID=(SELECT IDCLIENTE FROM informes_alumnos2 WHERE ID='.$id.')';
+
+
+	 $rs = mysql_query($sql,$Conexion);
+	  				
+  	 $fila = mysql_fetch_row($rs);
+				
+	 $NumeroRegistros = mysql_num_rows($rs);
+	 
+	 if($NumeroRegistros>0) {
+	    $resul=$fila[0].' '.$fila[1];
+		}
+	 else {	
+	   $resul='';
+	   }
+	   
+	   
+	   
+	 mysql_free_result($rs);
+	
+	return $resul; 
+	}
+	
+	///////////////////////////////
+	
+	function DameProfesorI($id)
+    {
+     global $Conexion;
+     
+	 //$sql='SELECT FIRST,LAST1 FROM users WHERE ID=(SELECT IDPROFESOR FROM grupos2 WHERE ID=(SELECT IDGRUPO FROM recibos2 WHERE ID='.$id.'))';
+	 $sql='SELECT FIRST,LAST1 FROM users WHERE ID=(SELECT IDUSUARIO FROM informes_alumnos2 WHERE ID='.$id.')';
+	 
+	 $rs = mysql_query($sql,$Conexion);
+	   			
+  	 $fila = mysql_fetch_row($rs);
+				
+	 $NumeroRegistros = mysql_num_rows($rs);
+	 
+	 if($NumeroRegistros>0) {
+	    $resul=$fila[0].' '.$fila[1];
+		}
+	 else {	
+	   $resul='';
+	   }
+	   
+	   
+	   
+	 mysql_free_result($rs);
+	
+	return $resul; 
+	}
+    
+	/////////////////////////////////////////////
+	
+	function DameAlumnoI($id)
+   {
+     global $Conexion;
+     
+	 $sql='SELECT ALUMNO FROM informes_alumnos2 WHERE ID='.$id.'';
+	  
+	 $rs = mysql_query($sql,$Conexion);
+	 	  			
+  	 $fila = mysql_fetch_row($rs);
+				
+	 $NumeroRegistros = mysql_num_rows($rs);
+	 
+	 if($NumeroRegistros>0) {
+		   $resul=$resul.$fila[0].' '.$fila[1];
+		 }
+	 else {	
+	   $resul='';
+	   }
+	    
+	 mysql_free_result($rs);
+	
+	return $resul; 
+	}
+	
+	
+	/////////////////////
+	function DameNivelI($id)
+    {
+     global $Conexion;
+     
+	 //$sql='SELECT FIRST,LAST1 FROM users WHERE ID=(SELECT IDPROFESOR FROM grupos2 WHERE ID=(SELECT IDGRUPO FROM recibos2 WHERE ID='.$id.'))';
+	 $sql='SELECT NIVEL FROM niveles2 WHERE ID=(SELECT IDNIVEL FROM informes_alumnos2 WHERE ID='.$id.')';
+	 
+	 $rs = mysql_query($sql,$Conexion);
+	   			
+  	 $fila = mysql_fetch_row($rs);
+				
+	 $NumeroRegistros = mysql_num_rows($rs);
+	 
+	 if($NumeroRegistros>0) {
+	    $resul=$fila[0];
+		}
+	 else {	
+	   $resul='';
+	   }
+	   
+	   
+	   
+	 mysql_free_result($rs);
+	
+	return $resul; 
+	}
+    
+	/////////////////////////////////////////////
+	
+	function DameMaterialI($id)
+    {
+     global $Conexion;
+     
+	 //$sql='SELECT FIRST,LAST1 FROM users WHERE ID=(SELECT IDPROFESOR FROM grupos2 WHERE ID=(SELECT IDGRUPO FROM recibos2 WHERE ID='.$id.'))';
+	 $sql='SELECT MATERIAL_USADO FROM informes_alumnos2 WHERE ID='.$id.'';
+	 
+	 $rs = mysql_query($sql,$Conexion);
+	   			
+  	 $fila = mysql_fetch_row($rs);
+				
+	 $NumeroRegistros = mysql_num_rows($rs);
+	 
+	 if($NumeroRegistros>0) {
+	    $resul=$fila[0];
+		}
+	 else {	
+	   $resul='';
+	   }
+	   
+	   
+	   
+	 mysql_free_result($rs);
+	
+	return $resul; 
+	}
+	
+	/////////////////////////////////////////////
+	
+	function DameComentarioI($id)
+    {
+     global $Conexion;
+     
+	 //$sql='SELECT FIRST,LAST1 FROM users WHERE ID=(SELECT IDPROFESOR FROM grupos2 WHERE ID=(SELECT IDGRUPO FROM recibos2 WHERE ID='.$id.'))';
+	 $sql='SELECT OTROS_COMENTARIOS FROM informes_alumnos2 WHERE ID='.$id.'';
+	 
+	 $rs = mysql_query($sql,$Conexion);
+	   			
+  	 $fila = mysql_fetch_row($rs);
+				
+	 $NumeroRegistros = mysql_num_rows($rs);
+	 
+	 if($NumeroRegistros>0) {
+	    $resul=$fila[0];
+		}
+	 else {	
+	   $resul='';
+	   }
+	   
+	   
+	   
+	 mysql_free_result($rs);
+	
+	return $resul; 
+	}
+	
+	/////////////////////////////////////////////
+	
+	function DameNecesitaMejorarI($id)
+    {
+     global $Conexion;
+     
+	 //$sql='SELECT FIRST,LAST1 FROM users WHERE ID=(SELECT IDPROFESOR FROM grupos2 WHERE ID=(SELECT IDGRUPO FROM recibos2 WHERE ID='.$id.'))';
+	 $sql='SELECT NECESITA_MEJORAR FROM informes_alumnos2 WHERE ID='.$id.'';
+	 
+	 $rs = mysql_query($sql,$Conexion);
+	   			
+  	 $fila = mysql_fetch_row($rs);
+				
+	 $NumeroRegistros = mysql_num_rows($rs);
+	 
+	 if($NumeroRegistros>0) {
+	    $resul=$fila[0];
+		}
+	 else {	
+	   $resul='';
+	   }
+	   
+	   
+	   
+	 mysql_free_result($rs);
+	
+	return $resul; 
+	}
+	
+	///////////////////////////////////////////
+	function DameCursoI($id)
+    {
+     global $Conexion;
+     
+	 //$sql='SELECT FIRST,LAST1 FROM users WHERE ID=(SELECT IDPROFESOR FROM grupos2 WHERE ID=(SELECT IDGRUPO FROM recibos2 WHERE ID='.$id.'))';
+	 $sql='SELECT IDCURSO FROM informes_alumnos2 WHERE ID='.$id.'';
+	 
+	 $rs = mysql_query($sql,$Conexion);
+	   			
+  	 $fila = mysql_fetch_row($rs);
+				
+	 $NumeroRegistros = mysql_num_rows($rs);
+	 
+	 if($NumeroRegistros>0) {
+	    $resul=$fila[0];
+		}
+	 else {	
+	   $resul='';
+	   }
+	   
+	   
+	   
+	 mysql_free_result($rs);
+	 /*
+	 <option value="0">May 08</option>
+     <option value="1">Dec 08</option>
+     <option value="2">May 09</option>
+     <option value="3">Dec 09</option>
+	 */
+	 
+	 /*$Curso[0]='May 08';
+	 $Curso[1]='Dec 08';
+	 $Curso[2]='May 09';
+	 $Curso[3]='Dec 09';*/
+	 
+ 	 $Curso[0]='May 2011';
+	 $Curso[1]='Dec 2011';
+	 $Curso[2]='May 2012';
+	 $Curso[3]='Dec 2012';
+	 $Curso[4]='May 2013';
+	 $Curso[5]='Dec 2013';
+	 $Curso[6]='May 2014';
+	 $Curso[7]='Dec 2014';
+	 $Curso[8]='May 2015';
+	 $Curso[9]='Dec 2015';
+	
+	return $Curso[$resul]; 
+	}
+	
+	/////////////////////////////////////////
+	
+	require('pdf_lib/fpdf.php');
+	
+	$id=$_REQUEST['id'];
+	
+	$Cliente=DameClienteI($id);
+	$Profesor=DameProfesorI($id);
+	$Alumno=DameAlumnoI($id);
+	$Curso=DameCursoI($id);
+	$Nivel=DameNivelI($id);
+	$MaterialUsado=DameMaterialI($id);
+	$Comentario=DameComentarioI($id);
+	$NecesitaMejorar=DameNecesitaMejorarI($id);
+	
+	
+		$pdf=new FPDF();
+	   
+	   	$pdf->AddPage();
+	
+	      //-------------------------------------
+		//Logo Canterbury
+    	$pdf->Image('recursos/imageCCS1.jpg',90,5,0);
+		//$pdf->Image('ficheros/logo_sgs.jpg',10,8,0);
+    	//Arial bold 15
+    	$pdf->SetFont('Arial','B',15);
+    	//$pdf->Ln(7);
+	    //Movernos a la derecha
+   		//$pdf->Cell(5);
+		//Título2
+		$pdf->SetXY(39,29); 
+   		$pdf->Cell(300,10,'Canterbury Consulting Spain - Informe del Alumno/a - Adultos',0,0,'L');
+		//Salto de línea
+    	
+		$pdf->SetFont('Arial','B',11);
+		
+		$pdf->SetXY(28,42); 
+		$pdf->Cell(40,2,'Cliente: '.$Cliente,0,0,'L');
+		
+		
+		$pdf->SetXY(28,52); 
+		$pdf->Cell(40,2,'Alumno/a: '.$Alumno,0,0,'L');
+		
+		
+		$pdf->SetXY(28,62); 
+		$pdf->Cell(40,2,'Profesor/a: '.$Profesor,0,0,'L');
+		
+		
+		$pdf->SetXY(146,42); 
+		$pdf->Cell(40,2,'Curso: '.$Curso,0,0,'L');
+		
+		$pdf->SetXY(146,52); 
+		$pdf->Cell(40,2,'Nivel: '.$Nivel,0,0,'L');
+		
+		//Recuadro de material usado
+		$pdf->SetXY(28,76); 
+		$pdf->Cell(160,45,'',1,0,'L');
+		
+		$pdf->SetXY(29,79); 
+		$pdf->MultiCell(160,5,'Material usado: '.$MaterialUsado,0,'L');
+		
+		//Recuadro calificaciones
+		$pdf->SetXY(28,130); 
+		$pdf->Cell(160,12,'',1,0,'L');
+		
+		$pdf->SetXY(28,130); 
+		$pdf->Cell(160,5,'Calificaciones:',0,0,'L');
+		$pdf->SetXY(28,135); 
+		$pdf->Cell(160,5,'1 =  Necesita mejorar  2 =  Normal  3 =  Bien  4 =  Excelente  5 = No Aplica',0,0,'L');
+		
+		
+		//Calificaciones:
+		//1=  Necesita mejorar  2 =  Normal  3 =  Bien   4 =  Excelente
+		/*
+		Areas de Evaluación	Calificación:
+		*/
+		
+		//Encabezado
+	   
+		$pdf->SetXY(65.5,150);
+		$pdf->Cell(60,10,'Areas de Evaluación',1,0,'C');
+		$pdf->SetXY(65.5+60,150);
+		$pdf->Cell(25,10,'Calificación',1,0,'C');
+		/*$pdf->SetXY(28+60+20,150);
+		$pdf->Cell(100,10,'Comentarios',1,0,'C');*/
+		
+		
+		ObtenerCalificaciones($calificaciones,$id);
+		
+		ObtenerComentarios($comentarios,$id);
+		
+		//ObtenerCantidades($cantidades,$id);
+		/*
+		
+Pronunciación
+
+Gramática
+
+Comprensión Oral
+
+Comprensión Escrita
+
+Expresión Escrita
+
+Expresión Oral
+
+		*/
+		$areas[0]='Pronunciación';
+		$areas[1]='Gramática';
+		$areas[2]='Comprensión Oral';
+		$areas[3]='Comprensión Escrita';
+		$areas[4]='Expresión Escrita';
+		$areas[5]='Expresión Oral';
+		//$areas[6]='';
+		//$areas[7]='';
+		//$areas[8]='';
+		
+		
+		//Registros
+		
+		$ajuste=0;
+		for($i=0;$i<count($areas);$i++)  {
+	      $pdf->SetXY(65.5,150+10+$ajuste);
+		  $pdf->Cell(60,5,$areas[$i],1,0,'C');
+		  $pdf->SetXY(65.5+60,150+10+$ajuste);
+		  $pdf->Cell(25,5,$calificaciones[$i],1,0,'C');
+		  $pdf->SetXY(65.5+60+20,150+10+$ajuste);
+		  //$pdf->Cell(100,5,$comentarios[$i],1,0,'C');
+	      //$total=$total+($cantidades[$i]*$precios[$i]);
+		  $ajuste=$ajuste+5;
+		  }
+		  
+		
+		
+		
+		//$ajuste=12;
+		//Recuadro
+		$pdf->SetXY(28,150+10+$ajuste+12); 
+		$pdf->Cell(160,70,'',1,0,'L');
+		
+		$pdf->SetXY(29,150+10+$ajuste+15); 
+		$pdf->MultiCell(160,5,'Comentarios: '.$Comentario,0,'L');
+		
+		$pdf->SetXY(29,150+10+$ajuste+16+30); 
+		//$pdf->MultiCell(160,5,'Necesita mejorar: '.$NecesitaMejorar,0,'L');
+		
+	
+		
+		
+//###################################################################################################################		
+		//}//del for()
+		
+		
+		$pdf->Output();
+		
+		/*
+		}   
+    else
+    {
+	mysql_free_result($rs);
+	print 'Cargando informe...  ';
+	//print '<a href="index.php">Inicio</a>';
+    $Correcto=0;
+	}	
+	
+	mysql_close();
+	//print '</html>';
+	*/
+	
+	//print '->'.$VariableQueContegaNombredeFuncion.'<-'; *********
+?> 

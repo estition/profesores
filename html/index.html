@@ -1,0 +1,279 @@
+<html>
+	<head>
+	<link href="css/canterbury.css" type="text/css" rel="stylesheet">
+	<title>Canterbury Hours</title>
+	</head>
+	<body>
+		<table width="100%" cellpadding="0" height="599" cellspacing="0" border="0">
+			<tr>
+				<td height="20" colspan="3" bgcolor="#0033CC">
+					<table width="100%">
+						<tr>
+						<td height="20" align="left" bgcolor="#0033CC">
+							&nbsp;&nbsp;<font class="textWBig">Canterbury Hours Input</font>
+						</td>
+						<td height="20" align="right" bgcolor="#0033CC">
+							<font class="textW"><b>Welcome <font class="boldText">Matthew Patin</font></b>&nbsp;&nbsp;<br>
+							Not Matthew Patin? <a href=""><font class="boldText">Logout</font></a>&nbsp;&nbsp;
+							</font>
+						<td>
+						</tr>
+					</table>
+				<td>
+			</tr>
+			<tr><td height="1px" colspan="3" bgcolor="#172244">
+				</td>
+			</tr>
+			<tr>
+				<td height="500" bgcolor="B6C5F2" width="130px" valign="top" >
+					<table cellpadding="5" cellspacing="0" border="0" width="100%" >
+						<tr><a href="#"><td class="menuText" style="cursor: hand" onMouseOver="javascript:this.style.background='#738FE6'" onMouseOut="javascript:this.style.background='#B6C5F2'">- My Hours</td></a></tr>
+						<tr><a href="#"><td class="menuText" style="cursor: hand" onMouseOver="javascript:this.style.background='#738FE6'" onMouseOut="javascript:this.style.background='#B6C5F2'">- Hours (by teacher)</td></a></tr>
+						<tr><a href="#"><td class="menuText" style="cursor: hand" onMouseOver="javascript:this.style.background='#738FE6'" onMouseOut="javascript:this.style.background='#B6C5F2'">- Hours (by month)</td></a></tr>
+						<tr><a href="#"><td class="menuText" style="cursor: hand" onMouseOver="javascript:this.style.background='#738FE6'" onMouseOut="javascript:this.style.background='#B6C5F2'">- User admin</td></a></tr>
+						<tr><a href="#"><td class="menuText" style="cursor: hand" onMouseOver="javascript:this.style.background='#738FE6'" onMouseOut="javascript:this.style.background='#B6C5F2'">- Classday admin</td></a></tr>
+						<tr><a href="#"><td class="menuText" style="cursor: hand" onMouseOver="javascript:this.style.background='#738FE6'" onMouseOut="javascript:this.style.background='#B6C5F2'">- Logout</td></a></tr>
+					</table>
+				</td>
+				<td width="1px" bgcolor="#172244">
+				</td>
+				<td valign="top">
+					<table cellspacing="4" align="left" cellpadding="4" border="0">
+						<tr><td>
+							<script>
+								function day(d) {
+									alert(d);
+								}
+								
+								function details(id) {
+									window.open("details.html", "Details", "width=400, height=300, location=no, menubar=no, status=no, toolbar=no, scrollbars=auto, resizable=no");
+								}
+								
+								function remove(id) {
+									var confirmed = false;
+									confirmed = confirm("Are you sure you want to delete this entry?");
+									if (confirmed) {
+										alert("deleted");
+									}
+								}
+								
+							</script>
+						
+							<form method="post" name="myform">
+							<!--calendar-->
+							<table width="100%" cellspacing="5">
+							 <tr bgcolor="#ffffff" align="center">
+									<td width="40" height="5"><a href="#" class="textB"><b>< <</b></a></td>
+									<td width="40" ><a href="#" class="textB"><b><</b></a></td>
+									<td colspan="3" align="center"><font size="2">September 2004</font></td>
+									<td width="40" ><a href="#" class="textB"><b>></b></a></td>
+									<td width="40" ><a href="#" class="textB"><b>> ></b></a></td>
+								</tr>
+								<tr bgcolor="#ffffff" align="center">
+									<td width="40" height="5">Mon.</td>
+									<td width="40" >Tues.</td>
+									<td width="40" >Wed.</td>
+									<td width="40" >Thur.</td>
+									<td width="40" >Fri.</td>
+									<td width="40" >Sat.</td>
+									<td width="40" >Sun.</td>
+								</tr>
+							</table>
+								
+							<table width="100%" cellspacing="5" border="1" bordercolor="172244" bgcolor="FFE6BF" >
+								<tr align="center">
+									<td width="40" height="40" bgcolor="#BBBBBB">&nbsp;</td>
+									<td width="40" height="40" bgcolor="#BBBBBB">&nbsp;</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#B6C5F2">1</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#B6C5F2">2</td>
+									<td onClick="javascript:day(3);" style="cursor:hand" width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#B6C5F2" bordercolor="FFFFFF"><b>3</b> </td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#738FE6">4</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#738FE6">5</td>
+								</tr>
+								<tr align="center">
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#ff9900">6</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#B6C5F2">7</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#B6C5F2">8</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#B6C5F2">9</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#B6C5F2">10</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#738FE6">11</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#738FE6">12</td>
+								</tr>
+								<tr align="center">
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#B6C5F2">13</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#B6C5F2">14</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#B6C5F2">15</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#B6C5F2">16</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#B6C5F2">17</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#738FE6">18</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#738FE6">19</td>
+								</tr>
+								<tr align="center">
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#B6C5F2">20</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#B6C5F2">21</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#B6C5F2">22</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#B6C5F2">23</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#B6C5F2">24</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#738FE6">25</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#738FE6">26</td>
+								</tr>
+								<tr align="center">
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#B6C5F2">27</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#B6C5F2">28</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#B6C5F2">29</td>
+									<td width="40" height="40" class="textB" onClick="javascript:day(3);" style="cursor:hand" bgcolor="#B6C5F2">30</td>
+									<td width="40" height="40" bgcolor="#BBBBBB">&nbsp;</td>
+									<td width="40" height="40" bgcolor="#BBBBBB">&nbsp;</td>
+									<td width="40" height="40" bgcolor="#BBBBBB">&nbsp;</td>
+								</tr>
+							</table>
+						</td>
+						<td  valign="bottom">
+							<table width="100%" cellpadding="4" cellspacing="0" border="0" bgcolor="B6C5F2">
+								<tr bgcolor="0033CC">
+									<td colspan="2" class="textW" height="10">
+										<b>Input hours for Monday, September 3</b>
+									</td>
+								</tr>
+								<tr>
+									<td height="6" colspan="2" bgcolor="FFFFFF">
+									</td>
+								</tr>
+								<tr>
+									<td>Client:</td>
+									<td>
+										<select>
+											<option>María Juanita</option>
+											<option>Fullanito Gonzalez</option>
+										</select>	
+									</td>
+								</tr>
+								<tr>
+									<td>Concept:</td>
+									<td>
+										<select>
+											<option>Class Taught</option>
+											<option>Student Cancellation</option>
+											<option>Student No-show</option>
+											<option>Teacher Cancelation</option>
+											<option>Makeup Class Taught</option>
+										</select>	
+									</td>
+								</tr>
+								<tr>
+									<td>Hours:</td>
+									<td>
+										<input type="text" size="5" name="hours">
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										Observations:<br>
+										<textarea cols="30" rows="4"></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" align="right">
+										<input type="submit" class="submit-button" value="Input">
+									</td>
+								</tr>
+							</table>
+						</td>
+						</tr>
+						<tr>
+						<td>
+							<table align="right">
+								<tr>
+									<td>Classday:</td>
+									<td><table width="15" bgcolor="B6C5F2"><tr height="10"><td></td></tr></table></td>
+									<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+									<td>Non-classday:</td>
+									<td><table width="15" bgcolor="738FE6"><tr height="10"><td></td></tr></table></td>
+									<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+									<td>Holiday:</td>
+									<td><table width="15" bgcolor="ff9900"><tr height="10"><td></td></tr></table></td>
+							 	</tr>
+							</table>
+						</td>
+						<td>&nbsp;</td>				
+						</tr>
+						<tr bgcolor="0033CC">
+							<td colspan="2" class="textW" height="10">
+								<b>Hours already inputted for September 3, 2004</b>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<table cellspacing="0" width="100%">
+									<tr>
+										<td class="heading">&nbsp;</td>
+										<td class="heading" width="10" align="center">Hours</td>
+										<td class="heading">&nbsp;</td>
+										<td class="heading">Client</td>
+										<td class="heading">&nbsp;</td>
+										<td class="heading">Concept</td>
+										<td class="heading">&nbsp;</td>
+										<td class="heading">Observations</td>
+										<td class="heading">&nbsp;</td>
+									</tr>
+									<tr bgcolor="#B6C5F2" style="cursor:hand">
+										<td onClick="javascript:details(3);">&nbsp;</td>
+										<td onClick="javascript:details(3);" align="center">1</td>
+										<td onClick="javascript:details(3);">&nbsp;</td>
+										<td onClick="javascript:details(3);">María Jose</td>
+										<td onClick="javascript:details(3);">&nbsp;</td>
+										<td onClick="javascript:details(3);">Class Taught</td>
+										<td onClick="javascript:details(3);">&nbsp;</td>
+										<td onClick="javascript:details(3);"></td>
+										<td><a href="javascript:remove(3);"><b>X</b></a></td>
+									</tr>
+									<tr bgcolor="#FFFFFF">
+										<td>&nbsp;</td>
+										<td align="center">1</td>
+										<td>&nbsp;</td>
+										<td>María Jose</td>
+										<td>&nbsp;</td>
+										<td>Makeup Class Taught</td>
+										<td>&nbsp;</td>
+										<td></td>
+										<td><a href="javascript:delete(3);"><b>X</b></a></td>
+									</tr>
+									<tr bgcolor="#B6C5F2">
+										<td>&nbsp;</td>
+										<td align="center">1</td>
+										<td>&nbsp;</td>
+										<td>María Jose</td>
+										<td>&nbsp;</td>
+										<td>Student Noshow</td>
+										<td>&nbsp;</td>
+										<td>Student was sick and had to go to the...</td>
+										<td><a href="javascript:delete(3);"><b>X</b></a></td>
+									</tr>
+									<tr bgcolor="#FFFFFF">
+										<td>&nbsp;</td>
+										<td align="center">1</td>
+										<td>&nbsp;</td>
+										<td>Pepe Botella</td>
+										<td>&nbsp;</td>
+										<td>Class Taught</td>
+										<td>&nbsp;</td>
+										<td></td>
+										<td><a href="javascript:delete(3);"><b>X</b></a></td>
+									</tr>
+								</table>
+							</td> 
+						</tr>
+					</table>
+					</form>
+				</td>
+			</tr>
+			<tr height="10">
+				<td bgcolor="B6C5F2"></td>
+				<td bgcolor="#172244"></td>
+				<td align="left">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&copy; Canterbury English, 2004
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
